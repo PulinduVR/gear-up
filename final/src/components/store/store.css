@@ -1,0 +1,122 @@
+/* store.css */
+
+.search-page {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.search-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-bar input,
+.search-bar button {
+  /* padding: 8px 12px; */
+  /* border: 1px solid #ddd; */
+  border-radius: 4px;
+}
+
+.search-bar button {
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  margin-top: 22px;
+}
+
+.search-bar button:hover {
+  background-color: #0056b3;
+}
+
+.content {
+  display: flex;
+}
+
+.filters {
+  flex: 1;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.filters h4 {
+  margin-bottom: 10px;
+}
+
+.filters div {
+  margin-bottom: 8px;
+}
+
+.item-list {
+  flex: 3;
+  padding: 10px;
+}
+
+.item-list h4 {
+  margin-bottom: 20px;
+}
+
+.item {
+  display: flex;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+  transition: transform 0.2s;
+}
+
+.item:hover {
+  transform: translateY(-3px);
+}
+
+.item img {
+  width: 80px;
+  height: auto;
+  margin-right: 15px;
+  border-radius: 4px;
+}
+
+.item-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.item-details h5 {
+  font-size: 1.1em;
+  margin: 0;
+}
+
+.item-details p {
+  color: #666;
+  font-size: 0.9em;
+  margin: 5px 0;
+}
+
+.pricing {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.pricing span {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.item-details button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: #28a745;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.item-details button:hover {
+  background-color: #218838;
+}

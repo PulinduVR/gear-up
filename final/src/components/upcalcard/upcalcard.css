@@ -1,0 +1,50 @@
+.drums-image{
+    height: 192px;
+    border-radius: 8px;
+}
+
+.img-title{
+    font-size: 20px;
+    font-weight: 500;
+    width: 754px;
+    height: 48px;
+    color: rgb(0, 0, 0);
+    line-height: 1.2;
+}
+
+.renter-info{
+    font-size: 16px;
+    padding-top: 12px;
+    font-weight: 500;
+    color: black;
+    padding-bottom: 25px;
+    
+}
+
+.cancel-btn{
+    background-color: #FF4F4F;
+    padding: 5px 20px; 
+    font-size: 16px;
+    height: 44;
+}
+
+.cancel-btn:hover {
+    background-color: rgb(144, 144, 144); /* Optional: Change color on hover */
+}
+
+.upcal-container{
+    display: flex;
+    background-color: aliceblue;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.upcal-detailssection{
+    padding-left: 25px;
+    padding-bottom: 5px;
+}
+
+
+
+
+  

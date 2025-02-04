@@ -1,0 +1,75 @@
+.piano-image{
+    width: 192px;
+    border-radius: 8px;
+}
+
+.piano-title{
+    font-size: 20px;
+    font-weight: 500;
+    width: 454px;
+    height: 42px;
+    color: rgb(0, 0, 0);
+}
+
+.client-info{
+    font-size: 16px;
+    padding-top: 10px;
+}
+
+span{
+    color: #7c7c7c;
+    font-weight: 500;
+    padding-left: 30px;
+}
+
+.client-info p{
+    color: black;
+    font-weight: 500;
+}
+
+.chat-btn{
+    padding-left: 30px;
+    padding-right: 40px;
+    font-size: 16px;
+    background-color: #605DEC;
+    margin-top: 25px;
+    width: 257px;
+    border: 0cap;
+
+}
+
+.chat-btn:hover{
+    background-color: #BCBAF7;
+    color: black;
+    border: 0cap;
+}
+
+.rental-fee {
+    color: red;
+    font-weight: 600;
+}
+
+.start {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #f4f4f9;
+    border-radius: 8px;
+    width: 714px;
+}
+
+.calcard {
+    display: flex;
+    
+}
+
+.details-section {
+    padding-left: 20px;
+}
+
+
+  
+  
+
+
+

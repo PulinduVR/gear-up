@@ -1,0 +1,286 @@
+.navbar {
+  display: flex;
+  height: 51px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;; 
+  max-height: 100vh;
+  background-color: #ffffff;
+  position: relative;
+}
+
+
+
+
+
+.icons {
+  display: flex;
+  gap: 30px;
+}
+
+.logo {
+  width: 107px;
+  cursor: pointer;
+}
+
+.icon1,
+.icon2,
+.icon3,
+.icon4 {
+  width: 55px !important; /* Force the width */
+  height: 45px !important;
+  cursor: pointer;
+}
+
+.signup {
+  border-radius: 8px;
+  height: 41px;
+  cursor: pointer;
+}
+
+.signup-button {
+  padding: 0 10px;
+  height: 100%;
+  background-color: transparent;
+  border: 1px solid #000;
+  cursor: pointer;
+}
+
+.signup-button:hover {
+  background-color: white;
+  color: black;
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 1200px) {
+  .navbar {
+    padding: 11px 20px;  /* Adjusted padding for better responsiveness */
+  }
+
+  .icons {
+    gap: 30px;
+  }
+
+  .logo {
+    width: 90px;
+  }
+
+  .icon1,
+  .icon2,
+  .icon3,
+  .icon4 {
+    height: 35px;
+  }
+
+  .signup-button {
+    height: 36px;
+    padding: 0 8px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding: 11px 20px;
+  }
+
+  .icons {
+    gap: 20px;
+  }
+
+  .logo {
+    width: 80px;
+  }
+
+  .icon1,
+  .icon2,
+  .icon3,
+  .icon4 {
+    height: 30px;
+  }
+
+  .signup-button {
+    height: 36px;
+    padding: 0 5px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .navbar {
+    flex-direction: column;
+    padding: 11px 10px;
+    align-items: flex-start;
+  }
+
+  .icons {
+    gap: 15px;
+  }
+
+  .logo {
+    width: 70px;
+  }
+
+  .icon1,
+  .icon2,
+  .icon3,
+  .icon4 {
+    height: 28px;
+  }
+
+  .signup-button {
+    width: 100%;
+    height: 36px;
+    padding: 0 10px;
+  }
+}
+
+
+/* Add styles for profile icon */
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+}
+
+.profile button {
+  margin-left: 10px;
+}
+
+.user-section {
+  display: flex;
+  align-items: center;
+}
+
+
+/* General Navbar Styling */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Navbar User Section */
+.user-section {
+  position: relative; /* To position the popup correctly */
+  display: flex;
+  align-items: center;
+  margin-right: 20px; /* Adjust spacing */
+}
+
+/* Profile Icon */
+.profile-icon {
+  width: 40px; /* Adjust size for the profile icon */
+  height: 40px;
+  border-radius: 50%; /* Make the icon circular */
+  object-fit: cover; /* Ensure image aspect ratio is maintained */
+  cursor: pointer; /* Pointer cursor on hover */
+  border: 2px solid #6a5acd; /* Optional: Add a border to match theme */
+}
+
+/* Profile Popup */
+.profile-popup {
+  position: absolute;
+  top: 60px; /* Position below the profile icon */
+  right: 0;
+  width: 260px; /* Adjust popup width */
+  background-color: #fff; /* White background for the card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  border-radius: 8px; /* Rounded corners */
+  z-index: 1000; /* Ensure it appears above other elements */
+  padding: 15px; /* Add padding inside the popup */
+  text-align: center; /* Center-align the content */
+}
+
+/* Profile Header */
+.profile-header {
+  margin-bottom: 15px; /* Add spacing below the header */
+}
+
+.profile-image {
+  width: 80px; /* Profile image size */
+  height: 80px;
+  border-radius: 50%; /* Make the image circular */
+  object-fit: cover; /* Ensure proper fit */
+  margin: 0 auto 10px; /* Center the image */
+}
+
+.profile-name {
+  font-size: 16px; /* Adjust font size */
+  font-weight: bold; /* Bold for emphasis */
+  margin: 5px 0; /* Add space around the name */
+}
+
+.edit-profile-link {
+  font-size: 14px;
+  color: #6a5acd;
+  text-decoration: none;
+}
+
+.edit-profile-link:hover {
+  text-decoration: underline;
+}
+
+/* Profile Sections */
+.profile-sections {
+  text-align: left;
+}
+
+.section h3 {
+  font-size: 14px;
+  margin: 10px 0;
+  color: #08080a;
+  font-weight:bold;
+  margin-left: 10px;
+  
+}
+
+.section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.section ul li {
+  margin: 8px 0;
+  
+}
+
+.section ul li a {
+  text-decoration: none;
+  color: #111010;
+  font-size: 13px;
+  margin-left: 40px;
+ 
+}
+
+.section ul li a:hover {
+  color: #6a5acd;
+}
+
+/* Logout Button */
+.logout-btn {
+  display: block;
+  width: 30%;
+  background-color: #6a5acd;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  margin-top: 15px;
+  cursor: pointer;
+  
+}
+
+logout-btn:hover {
+  background-color: #483d8b;
+}

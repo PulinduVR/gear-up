@@ -1,0 +1,40 @@
+.drums-image{
+    height: 192px;
+    border-radius: 8px;
+}
+
+.img-title{
+    font-size: 20px;
+    font-weight: 500;
+    width: 754px;
+    height: 48px;
+    color: rgb(0, 0, 0);
+    line-height: 1.2;
+}
+
+.renter-info{
+    font-size: 16px;
+    padding-top: 12px;
+    font-weight: 500;
+    color: black;
+    padding-bottom: 25px;
+    
+}
+.upcal-container{
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    padding-left: 20px;
+    border-radius: 8px;
+    padding-right: 20px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.upcal-detailssection{
+    padding-left: 25px;
+}
+
+
+
+
+  

@@ -1,0 +1,76 @@
+.calendar-container-1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align to the left for better positioning */
+  position: relative; /* Ensure absolute positioning of the calendar works within this container */
+  margin-top: 8px; /* Minimal spacing above */
+}
+
+.small-calendar-1 {
+  position: absolute; /* Ensures it's positioned relative to the container */
+  top: 100%; /* Places it directly below the button */
+  left: 0; /* Aligns with the left edge of the button */
+  z-index: 10; /* Keeps it above other elements */
+  width: 300px; /* Compact width */
+  height: auto; /* Adjust height automatically */
+  max-width: 100%; /* Responsive width */
+  font-size: 0.9rem; /* Adjusted for readability */
+  border-radius: 12px; /* Smooth rounded edges */
+  background-color: #ffffff; /* Clean white background */
+  border: 1px solid #ccc; /* Light gray border */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  padding: 10px; /* Add padding for better appearance */
+}
+
+.react-calendar__tile {
+  height: 40px !important; /* Larger tile size for better usability */
+  color: #333333; /* Darker text for better contrast */
+  font-size: 0.85rem; /* Slightly larger font for better readability */
+  border-radius: 6px; /* Slightly rounded tile edges */
+}
+
+.react-calendar__tile--now {
+  background-color: #ffeed4; /* Light orange highlight for current date */
+  color: #333333; /* Maintain text contrast */
+}
+
+.react-calendar__tile--active {
+  background-color: #4caf50; /* Green highlight for active date */
+  color: #ffffff; /* White text on active */
+  border-radius: 8px; /* Ensure consistent rounding */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Subtle shadow for focus */
+}
+
+.react-calendar__tile:hover {
+  background-color: #e0f7fa; /* Light blue hover effect */
+  color: #000000; /* Black text on hover */
+  transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+.react-calendar__navigation button {
+  font-size: 0.85rem; /* Adjusted size for navigation buttons */
+  font-weight: bold; /* Make buttons stand out */
+  color: #555555; /* Subtle gray for navigation */
+}
+
+.react-calendar__navigation button:hover {
+  color: #000000; /* Darker color on hover for emphasis */
+  background-color: #f0f0f0; /* Light gray hover effect */
+}
+
+.react-calendar__month-view__weekdays {
+  font-size: 0.8rem; /* Compact weekday labels */
+  color: #666666; /* Subtle gray for weekday labels */
+}
+
+.react-calendar__tile--range {
+  background-color: #81c784; /* Light green for range selection */
+  color: #ffffff; /* White text for range */
+}
+
+.react-calendar__tile--range:hover {
+  background-color: #66bb6a; /* Slightly darker green on hover */
+}
+
+/* Add a subtle border and hover effect to calendar container */
+

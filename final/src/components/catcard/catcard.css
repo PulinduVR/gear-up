@@ -1,0 +1,79 @@
+.music_card{
+    height: 144px;
+}
+
+.audio_card{
+    height: 144px;
+}
+
+.pa_card{
+    height: 144px;
+}
+
+.light_card{
+    height: 144px;
+}
+
+.studio_card{
+    height: 144px;
+}
+
+.guitar_card{
+    height: 144px;
+}
+
+.percussion_card{
+    height: 144px;
+}
+
+.dj_card{
+    height: 144px;
+}
+
+.cables_card{
+    height: 144px;
+}
+
+.sheet_card{
+    height: 144px;
+}
+
+.event_card{
+    height: 144px;
+}
+
+.cases_card{
+    height: 144px;
+}
+
+.transport_card{
+    height: 144px;
+}
+
+.other_card{
+    height: 144px;
+}
+
+
+.grid-container {
+    display: flex;
+    flex-direction: column; /* Arrange sets (rows) vertically */
+    gap: 16px; /* Adjust spacing between rows */
+}
+
+.set1, .set2 {
+    display: flex; /* Arrange cards in a row */
+    justify-content: center; /* Center the row */
+    gap: 30px; /* Space between cards */
+}
+.set3{
+    gap: 30px;
+    display: flex;
+}
+
+.music_card, .audio_card, .pa_card, .light_card, .studio_card,
+.guitar_card, .percussion_card, .dj_card, .cables_card, .sheet_card,
+.event_card, .cases_card, .other_card {
+    height: 144px;
+}
+

@@ -1,0 +1,214 @@
+/* Chat container styles */
+.chat-container {
+    display: flex;
+    justify-content: center; /* Horizontally centers the card */
+    align-items: center; /* Vertically centers the card */
+    height: 100vh; /* Full viewport height */
+    background-color: #f8f9fa;
+ 
+    box-sizing: border-box; /* Ensures padding doesn’t affect centering */
+  }
+  
+  /* Card style */
+  .chat-card {
+    display: flex;
+    width: 100%;
+    max-width: 1200px; /* Restricts maximum width of the card */
+    height: auto;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  /* Sidebar styles */
+  .chat-sidebar {
+    width: 35%;
+    border-right: 1px solid #e0e0e0;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Header styles */
+  .chat-header {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .chat-header button{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #ffffff;
+    color: #000000;
+  }
+  
+ 
+  
+  /* Chat list styles */
+  .chat-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    color: black;
+  }
+  
+  .chat-item {
+    display: flex;
+    align-items: center;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 10px;
+    background: #ffffff;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .chat-item:hover {
+    background: #f2f2f2;
+  }
+  
+  .chat-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+  
+  .chat-details {
+    flex-grow: 1;
+  }
+  
+  .chat-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .chat-preview {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .chat-date {
+    font-size: 12px;
+    color: #999;
+  }
+  
+  /* Main chat area styles */
+  .chat-main {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+    color: black;
+
+  }
+  
+  .chat-placeholder {
+    font-size: 24px;
+    color: #d3d3d3;
+    
+  }
+  
+  .chat-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+  }
+  
+  .chat-message {
+    max-width: 70%;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+  }
+  
+  .chat-message.me {
+    align-self: flex-end;
+    background-color: #6949ff;
+    color: #fff;
+    
+  }
+  
+  .chat-message.them {
+    align-self: flex-start;
+    background-color: #f1f1f1;
+    color: #333;
+    
+  }
+  
+  .chat-typing-bar {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    background-color: #f9f9f9;
+  }
+  
+  .chat-typing-bar input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 14px;
+  }
+  
+  .chat-typing-bar button {
+    background-color: #6949ff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .chat-typing-bar button:hover {
+    background-color: #5638d6;
+  }
+  .chat-header .tab {
+  padding: 10px 20px;
+  cursor: pointer;
+  background: #a7a7a7;
+  border: none;
+  border-bottom: 2px solid transparent;
+  outline: none;
+  transition: background 0.3s;
+}
+
+.chat-header .tab.active {
+  background: #a3a2a2;
+  border-bottom: 2px solid #007bff;
+  font-weight: bold;
+}
+
+.chat-header .tab:hover {
+  background: #e6e6e6;
+}
+
+/* Clipboard icon styling */
+.clipboard-icon {
+  color: #6949ff; /* Initial color */
+  font-size: 20px; /* Icon size */
+  margin-right: 10px; /* Spacing from other elements */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+/* Hover effect for the clipboard icon */
+.clipboard-icon:hover {
+  color: #5638d6; /* Darker shade on hover */
+}
+
+/* Positioning for the clipboard icon within its container */
+.chat-header .clipboard-container {
+  display: flex;
+  align-items: center; /* Vertically center the icon */
+  justify-content: flex-start; /* Align the icon to the left */
+  gap: 10px; /* Spacing between clipboard icon and other content */
+}

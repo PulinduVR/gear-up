@@ -1,0 +1,166 @@
+.booking-page {
+  padding: 20px;
+
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title-book {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 15px;
+  text-align: left;
+  margin: auto;
+}
+
+
+.highlight {
+  color: #605dec;
+}
+
+.booking-list {
+  display: flex;
+  gap: 60px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.booking-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  width: 320px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  color: black;
+}
+
+.booking-title {
+  font-size: 18px;
+  color: #444;
+  margin-bottom: 10px;
+  
+}
+
+
+.calendar-section {
+  margin-bottom: 40px;
+  
+}
+
+.items-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.item-count {
+  font-size: 16px;
+  color: #555;
+}
+
+.add-item-button {
+  background-color: #e0e0ff;
+  color: #605dec;
+  border: 2px solid #605dec;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.add-item-button:hover {
+  background-color: #605dec;
+  color: #ffffff;
+}
+
+.item-list {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.item-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 15px;
+  width: 320px;
+}
+
+.item-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.item-name {
+  margin-top: 12px;
+  font-size: 16px;
+  color: #444;
+}
+
+.calendar-section {
+  margin-bottom: 40px;
+  
+  
+}
+
+.react-calendar {
+  border: none; /* Remove default border */
+  border-radius: 20px; /* Increased border radius for the calendar */
+  background-color: #ffffff; /* Clean white background */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  padding: 15px;
+}
+
+.react-calendar__navigation {
+  margin-bottom: 10px;
+}
+
+.react-calendar__navigation button {
+  font-size: 1rem;
+  color: #605dec;
+  background-color: #e0e0ff;
+  border: none;
+  border-radius: 12px; /* Rounded navigation buttons */
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.react-calendar__navigation button:hover {
+  background-color: #605dec;
+  color: #ffffff;
+}
+
+.react-calendar__tile {
+  height: 40px !important;
+  border-radius: 12px; /* Rounded tiles */
+  color: #333333;
+  font-size: 0.85rem;
+  background-color: #ffffff;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.react-calendar__tile--now {
+  background-color: #ffeed4; /* Highlight for the current date */
+  border-radius: 15px; /* Rounded edges for the current date */
+  color: #333333;
+}
+
+.react-calendar__tile--active {
+  background-color: #605dec; /* Highlight for the selected date */
+  color: #ffffff;
+  border-radius: 15px; /* Rounded active tiles */
+  box-shadow: 0 0 8px rgba(96, 93, 236, 0.6); /* Glow effect for active date */
+}
+
+.react-calendar__tile:hover {
+  background-color: #e0e0ff; /* Light hover effect */
+  transform: scale(1.05); /* Slight zoom-in effect */
+  color: #605dec;
+}

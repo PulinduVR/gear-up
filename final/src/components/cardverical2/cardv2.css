@@ -1,0 +1,58 @@
+.pianopic{
+  height: 226px;
+  width: 226px;
+  border-radius: 8px;
+}
+
+.title{
+  width: 226px;
+  font-weight: 500;
+  font-size: 16px;
+  color: black;
+}
+
+.location {
+  color: #605DEC;
+  font-size: 12px;
+  padding-top: 10px;
+  padding-left: 165px;
+  font-weight: 500;
+
+}
+
+.price-box p{
+  font-size: 12px;
+  font-weight: 400;
+  padding-top: 10px;
+  color: #7C7C7C;
+}
+
+.price-box h3{
+  font-size: 14px;
+  font-weight: 500;
+  padding-top: 4px;
+  color: #343434;
+}
+
+.pricing-section{
+  display: flex;
+  gap: 30px;
+  width: 226px
+}
+
+.fullcard{
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 10px 60px;
+  margin: 0;
+ 
+}
+
+.full-cont{
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  max-width: 1900px;
+}

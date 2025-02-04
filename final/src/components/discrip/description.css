@@ -1,0 +1,426 @@
+/* Description Page Styles */
+.description-page {
+  max-width: 1200px; /* Limit the width of the page */
+  margin: 0 auto; /* Center the page horizontally */
+  padding: 20px; /* Add padding on all sides for spacing */
+
+  color: #333;
+}
+
+.description-page img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.description-page .main-section {
+  display: flex;
+  gap: 10px; /* Reduce the gap between image and details sections */
+  margin-bottom: 20px;
+  align-items: flex-start;
+  max-width: 1200px; /* Align both sections at the top */
+}
+
+/* Add responsive design for smaller screens */
+@media (max-width: 600px) {
+  .description-page .main-section {
+    flex-direction: column; /* Stack sections vertically */
+    align-items: center; /* Center the items */
+  }
+
+  .description-page {
+    padding: 10px; /* Reduce padding for smaller screens */
+    
+  }
+}
+
+.description-page .details-section {
+  flex: 1 1 calc(50% - 10px); /* Adjust width to account for the reduced gap */
+}
+.description-page .thumbnail-gallery {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.description-page .thumbnail-gallery img {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.description-page .details-section {
+  flex: 1 1 50%; /* Ensures details section takes up 50% width */
+}
+
+.description-page .details-section h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: -50px;
+}
+
+.description-page .details-section p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.description-page .details-section .location {
+  font-size: 14px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.description-page .details-section .pricing {
+  /* display: grid; */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 55px;
+  margin: 10px 0;
+}
+
+.description-page .details-section .pricing div {
+  text-align: center;
+}
+
+.description-page .details-section .pricing div p {
+  margin: 5px 0;
+}
+
+.description-page .details-section .estimated-cost {
+  font-size: 18px;
+  font-weight: bold;
+  color: #e63946;
+  margin-top: 10px;
+}
+
+
+
+
+.breadcrumbs {
+  font-size: 14px;
+  color: gray;
+
+}
+
+.availability {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.check-availability {
+  background-color: #ffffff;
+  color: #007bff;
+  border: 1px solid #007bff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.check-availability:hover {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.chat {
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.reserve {
+  background-color: #6c63ff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.reserve:hover {
+  background-color: #574bff;
+}
+
+.description-page .description-section {
+  margin-top: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px 20px;
+  
+}
+
+.description-page .description-section h3 {
+  font-size: 20px;
+  font-weight: bold;
+   
+}
+
+.description-page .description-section p {
+  margin-top: 10px;
+  color: #333;
+  line-height: 1.6;
+}
+.reviews-section {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.review-summary {
+  display: flex;
+  gap: 20px;
+}
+
+.rating-box {
+  flex: 1;
+  text-align: center;
+}
+
+.rating-box .ratings-breakdown {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.write-review {
+  background-color: #6200ea;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.individual-reviews {
+  flex: 2;
+}
+
+.review {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.review-date {
+  color: gray;
+  font-size: 0.9rem;
+}
+
+.load-more {
+  background-color: #6200ea;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+/* for the ratings  */
+.ratings-breakdown {
+  margin-top: 10px;
+}
+
+.rating-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.rating-bar {
+  position: relative;
+  flex: 1;
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.rating-fill {
+  height: 100%;
+  background-color: #ffc107; /* Yellow color */
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+/* for the review  */
+/* ReviewCard.css */
+.review-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.write-review-btn {
+  padding: 10px 20px;
+  background-color: #6200ee;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.write-review-btn:hover {
+  background-color: #3700b3;
+}
+
+.review-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  width: 400px;
+}
+
+.review-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.star-rating {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.star {
+  font-size: 30px;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.star.filled {
+  color: gold;
+}
+
+.review-field {
+  width: 100%;
+  margin: 15px 0;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.input-field,
+.textarea-field {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.input-field {
+  height: 35px;
+}
+
+.textarea-field {
+  height: 80px;
+}
+
+.done-button {
+  padding: 10px 20px;
+  background-color: #6200ee;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.done-button:hover {
+  background-color: #3700b3;
+}
+
+
+
+.review-card-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+}
+
+/* tag for final h2 */
+.featured-tag{
+  margin-top:50px ;
+  margin-bottom: 40px;
+}
+
+/* Icon Section */
+.section1Dis {
+  display: flex;
+  justify-content: space-between; /* Aligns content (category, icons) horizontally */
+  align-items: center; /* Vertically centers the content */
+  margin-bottom: 20px; /* Adds space below the section */
+  gap: 15px;
+}
+
+.iconss img {
+  width: 45px; /* Icon width */
+  height: 40px; /* Icon height */
+  cursor: pointer; /* Changes cursor to pointer when hovering over icons */
+}
+
+.shareicon{
+  width: 25px !important; /* Force the width */
+  height: 25px !important; /* Force the height */
+  cursor: pointer; /* Change cursor to pointer for better UX */
+  transition: transform 0.2s ease, filter 0.2s ease; /* Smooth hover and click animations */
+  object-fit: contain; /* Ensure the icon scales properly */
+}
+
+.hearticon.liked {
+  transform: scale(1.2); /* Enlarges the heart icon when liked */
+  color: red; /* Changes color to red when liked */
+}
+.iconss{
+  display: flex;
+  gap: 20px; /* Add spacing between the icons */
+}
+
+.calendar-popup-new {
+  position: absolute;
+  top: calc(100% + 8px); /* Position below the button with spacing */
+  left: 0;
+  z-index: 1000;
+  padding: 2px;
+  max-width: 300px;
+  max-height: 250px;
+}
+
+.calendar-popup-new.hidden {
+  display: none;
+}
+
+.check-availability {
+  position: relative; /* This ensures the calendar aligns with the button */
+}

@@ -1,0 +1,235 @@
+/* Update Item Container */
+.update-item-container {
+    padding: 100px 80px;
+    background-color: #f9f9f9;
+    position: relative;
+  }
+  
+  /* Heading Style */
+  .update-h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #333;
+  }
+  
+  /* Top-right Toggle Button */
+  .top-right-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  
+  .toggle-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .toggle-btn.enabled {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .toggle-btn.disabled {
+    background-color: white;
+    color: #333;
+    border: 1px solid #333;
+  }
+  
+  /* Form Layout */
+  .update-item-form {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-left,
+  .form-right {
+    flex: 1;
+  }
+  
+  .form-left {
+    margin-right: 30px;
+  }
+  
+  /* Image Upload Section */
+  .update-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 100px);
+    gap: 10px;
+  }
+  
+  .image-container {
+    position: relative;
+  }
+  
+  .image-container img {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+  }
+  
+  .remove-image-btn {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .add-image-btn {
+    background-color: #e8e8e8;
+    border: 1px dashed #bbb;
+    width: 100px;
+    height: 100px;
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  /* Buttons */
+  .form-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .apply-btn {
+    background-color: #605dec;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .hide-btn {
+    background-color: white;
+    color: #f39c12;
+    padding: 10px 20px;
+    border: 1px solid #f39c12;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .delete-btn {
+    background-color: white;
+    color: red;
+    padding: 10px 20px;
+    border: 1px solid red;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+/* Toggle Container */
+.toggle-container-update {
+    display: flex;
+    justify-content: flex-start; 
+    gap: 20px; 
+    margin-left: 1000px;
+    padding-bottom: 5px;
+  }
+  
+  /* Boost Button */
+  .boost-btn {
+    background-color: #f0f0f7;
+    color: #605dec;
+    border: solid 2px #605dec;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    height: 50px;
+    padding-top: 10px;
+    margin-top: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .boost-btn :hover{
+    background-color: #605dec;
+    color: white;
+  }
+  
+  /* Toggle Switch */
+  .toggle-switch {
+    position: relative;
+    width: 50px;
+    height: 25px;
+    margin-top: 25px;
+  }
+  
+  /* Hide the default checkbox */
+  .toggle-switch input {
+    display: none;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 15px;
+    
+  }
+  
+  /* Circle inside the slider */
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 3.5px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+  /* When the switch is checked */
+  input:checked + .slider {
+    background-color: #4caf50;
+  }
+  
+  /* Move the circle to the right */
+  input:checked + .slider:before {
+    transform: translateX(25px);
+  }
+
+.textHidden{
+    display: flex;
+    justify-content: flex-start; 
+    margin-top: 25px;
+    padding-bottom: 20px;
+}
+  
+.apply-btn-1{
+  background-color: #605dec;
+}
+
+.hide-btn-1{
+  background-color: #e8e8e8;
+  border: 2px solid red;
+  color: red;
+}
+
+.delete-btn-1{
+  background-color: red;
+  color: #ccc;
+}

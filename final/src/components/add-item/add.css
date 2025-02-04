@@ -1,0 +1,216 @@
+/* Global Font and Container Styles */
+body {
+ 
+  font-size: 16px; /* Base font size */
+  line-height: 1.5; /* Improved readability */
+  color: #333;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9; /* Light background */
+}
+
+.add-item-container {
+  padding: 150px 100px;
+  /* background-color: #E9E8FC; */
+}
+
+/* Heading Style */
+.add-h1 {
+  font-size: 28px; /* Slightly larger heading for emphasis */
+  margin-bottom: 20px;
+  font-weight: 700;
+  color: #333;
+}
+
+/* Add Item Form Layout */
+.add-item-form {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  border-radius: 10px;
+  padding: 50px 100px; /* Increased padding for balance */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  font-size: 16px; /* Consistent form font size */
+}
+
+.form-left,
+.form-right {
+  flex: 1;
+}
+
+.form-left {
+  margin-right: 30px;
+}
+
+/* Form Group Spacing */
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 15px; /* Slightly larger for better readability */
+  font-weight: 500; /* Medium font weight */
+  color: #333;
+}
+
+label span {
+  color: red; /* Highlight required fields */
+}
+
+/* Input and Textarea Styling */
+input[type="text"],
+textarea {
+  width: 90%;
+  padding: 15px;
+  margin-top: 5px;
+  border: 1px solid #383030;
+  border-radius: 5px;
+  background-color: #F1F1F1;
+  font-size: 15px; /* Comfortable input font size */
+  color: black;
+  font-family: 'Roboto', 'Arial', sans-serif;
+}
+
+textarea {
+  height: 120px;
+  resize: none;
+}
+
+/* Select Dropdown Styling */
+select {
+  width: 100%;
+  padding: 15px;
+  margin-top: 5px;
+  border: 1px solid #383030;
+  border-radius: 5px;
+  background-color: #F1F1F1;
+  font-size: 15px;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  color: #5f5e5e;
+}
+
+/* Adjust description textarea */
+textarea {
+  font-size: 15px;
+}
+
+/* Category and Sub-category Layout */
+.form-group-horizontal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-group-horizontal label,
+.form-group-horizontal select {
+  flex: 1;
+}
+
+/* Price Options */
+.price-options {
+  display: flex;
+  flex-direction: row;
+  gap: 20px; /* Space between price options */
+}
+
+.price-options > div {
+  display: flex;
+  align-items: center;
+}
+
+.price-options label {
+  font-size: 15px; /* Consistent with other labels */
+  margin-left: 5px;
+  margin-right: 10px;
+}
+
+/* Location Inputs Layout */
+.location-inputs {
+  display: flex;
+  gap: 10px;
+}
+
+.location-inputs select,
+.location-inputs input {
+  flex: 1;
+}
+
+/* Add Images Placeholder */
+.add-images {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e8e8e8;
+  border-radius: 10px;
+  width: 100px;
+  height: 100px;
+  border: 1px dashed #bbb; /* Dashed border for emphasis */
+  font-family: 'Roboto', 'Arial', sans-serif;
+}
+
+.add-images button {
+  background: none;
+  border: none;
+  font-size: 32px;
+  color: #666;
+  cursor: pointer;
+}
+
+/* Buttons Group */
+.form-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 30px; /* Add spacing above buttons */
+}
+
+.apply-btn {
+  background-color: #605dec;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600; /* Bold for better visibility */
+  font-family: 'Roboto', 'Arial', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.apply-btn:hover {
+  background-color: #4b47cc; /* Darker shade on hover */
+}
+
+.discard-btn {
+  background-color: white;
+  color: red;
+  padding: 10px 20px;
+  border: 1px solid red;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600; /* Bold for better visibility */
+  font-family: 'Roboto', 'Arial', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.discard-btn:hover {
+  background-color: #fdd; /* Light red background on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .add-item-form {
+      flex-direction: column;
+      padding: 20px;
+  }
+
+  .form-left {
+      margin-right: 0;
+      margin-bottom: 20px;
+  }
+
+  .form-group-horizontal {
+      flex-direction: column;
+  }
+}
