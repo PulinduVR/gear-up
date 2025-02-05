@@ -40,6 +40,9 @@ const productSchema = new Schema(
     visibility: {
       type: Boolean,
     },
+    img: {
+      type: String,
+    },
     status: {
       type: Boolean,
     },

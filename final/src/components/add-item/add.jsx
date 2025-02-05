@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../../context/LoginContext";
 import "../add-item/add.css";
+import Upload from "../Upload";
 
 function AddItem() {
   const { isLoggedIn } = useLogin();
   const navigate = useNavigate();
+  const ref = useRef(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [image, setImg] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     price: "",
@@ -16,6 +19,7 @@ function AddItem() {
     postalCode: "",
     category: "",
     description: "",
+    img: image.url || "",
   });
 
   useEffect(() => {
@@ -23,6 +27,15 @@ function AddItem() {
       navigate("/login");
     }
   }, [isLoggedIn, navigate]);
+
+  useEffect(() => {
+    if (image?.url) {
+      setFormData((prevData) => ({
+        ...prevData,
+        img: image.url,
+      }));
+    }
+  }, [image]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -145,8 +158,13 @@ function AddItem() {
               Add images <span>*</span>
             </label>
             <div className="add-images">
-              <button type="button">+</button>
+              <Upload type="image" setData={setImg}>
+                +
+              </Upload>
             </div>
+            {/* <button onClick={ref.current.Click()} type="button">
+                +
+              </button> */}
           </div>
         </div>
 

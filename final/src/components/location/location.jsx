@@ -1,9 +1,8 @@
-import React from 'react';
-import './location.css'; // Import the CSS file
+import React from "react";
+import "./location.css"; // Import the CSS file
 
 const Location = () => {
   return (
-    
     <div className="search-bar">
       <div className="search-section">
         <label>Location</label>
