@@ -1,0 +1,139 @@
+
+
+.rentals-container {
+    max-width: 1000px;
+    
+    margin: 0 auto;
+    padding: 20px;
+
+  }
+  
+  .rentals-section {
+    margin-bottom: 40px;
+  }
+  
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .rental-head {
+    font-size: 28px;
+    margin: 0;
+    color: #1d1f21;
+  }
+  
+  .filter-dropdown-rental {
+    padding: 10px 7px;
+    border: 3px solid #ffffff;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  
+  .filter-dropdown-rental:nth-child(2) {
+    right: 100px;
+  }
+  
+  .filter-dropdown-rental option {
+    padding: 2px;
+  }
+
+  
+  .rental-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    height: 190px;
+  }
+  
+  .rental-image {
+    width: 200px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 20px;
+  }
+  
+  .rental-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #1d1f21;
+  }
+
+  .sub-rental-detail{
+    padding-top: 20px;
+  }
+  .sub-rental-detail h4{
+    color: #f81326;
+    
+  }
+  
+  .rental-details h3 {
+    font-size: 1.2rem;
+  
+  }
+  
+  .rental-details p {
+    font-size: 1rem;
+   column-gap: 10px;
+    
+  }
+  .rental-fee {
+    color: #f81326;
+    font-weight: bold;
+    
+  }
+
+  .rental-fee-container {
+    display: flex;
+    justify-content: space-between; /* Ensures proper spacing */
+    align-items: center; /* Aligns items vertically in the center */
+     /* Add some spacing above this row */
+  }
+  
+
+  
+  .cancel-button {
+    background: #f81326;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-left: 20px; 
+   
+  }
+  
+  .cancel-button:hover {
+    background: #d62828;
+  }
+  
+  .filter-dropdown {
+    padding: 10px 7px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  
+  .filter-dropdown:nth-child(2) {
+    right: 100px;
+  }
+  
+  .filter-dropdown option {
+    padding: 2px;
+  }

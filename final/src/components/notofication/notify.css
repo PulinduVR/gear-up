@@ -1,0 +1,111 @@
+/* Main container styling */
+.notifications-page {
+    width: 600px;
+    margin: auto;
+    font-family: Arial, sans-serif;
+    margin-top: 100px;
+  }
+  
+  /* Header styling */
+  /* Header styling */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    position: relative;
+    width: 1000px;
+  }
+  
+  .heading-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .main-heading {
+    font-size: 20px;
+    margin: 0;
+  }
+  
+  .notification-count {
+    font-size: 14px;
+    color: #777;
+    margin: 4px 0 0 0; /* Adds slight spacing below the main heading */
+  }
+  
+  /* Silent container */
+  .silent-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .header h2 {
+    font-size: 20px;
+    margin: 0;
+  }
+  
+  .silent-icon {
+    cursor: pointer;
+    font-size: 30px;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    padding: 20px;
+    transition: all 0.3s ease;
+    margin-right: 300px;
+  }
+  
+  .silent-icon.active {
+    background-color: #b583f5; /* Purple background */
+    border-color: #d2b4f8;
+  }
+  
+  /* Section styling */
+  .section {
+    margin-top: 20px;
+  }
+  
+  .section-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  /* Notification/Chat container styling */
+  .notification-container {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 700px;
+    height: 70px;
+  }
+  
+  .notification-container .profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 12px;
+  }
+  
+  .notification-container p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+    font-size: 1.2rem;
+  }
+  .heading-container h2{
+    color: #333;
+    font-size: xx-large;
+  }
+  .notification-count{
+    background-color: white;
+    padding: 5px 5px 5px 5px;
+    margin-right: 200px;
+    border-radius: 8px;
+  }

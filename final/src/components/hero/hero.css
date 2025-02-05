@@ -1,0 +1,126 @@
+/* Full Section to Center Hero */
+.herosection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh;  */
+    width: 100%;  /* Full width */
+    margin-top: 40px;
+    margin-bottom: 50px;
+}
+
+/* Full Section */
+.fullsection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0 20px;
+   
+}
+
+/* Hero Section Card */
+.hero {
+    background: url('../../assets/image.png'); /* Background image */
+    background-size: cover; /* Cover the entire container */
+    height: 466px; /* Fixed height of the hero section */
+    max-width: 1046px; /* Set a maximum width */
+    width: 100%; /* Ensure it scales responsively */
+    display: flex; /* Use flexbox for vertical alignment */
+    flex-direction: column; /* Align children vertically */
+    justify-content: center; /* Center content vertically */
+    color: white !important;/* Change text color to white */
+    border-radius: 16px;
+    padding: 60px;
+    margin: 0 auto; /* Center horizontally */
+}
+
+/* Hero Section - Heading (h3 and h1) */
+.hero h3 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #7C7C7C;
+    margin-bottom: 15px; /* Set gap between h3 and h1 */
+}
+
+.hero h1 {
+    font-size: 50px;
+    font-weight: 500;
+    line-height: 68px;
+    margin-top: 0; /* Ensure no extra margin at the top */
+}
+
+/* Get Started Button */
+.get-started-button {
+    margin-top: 140px; /* Space between the h1 and button */
+    font-size: 18px;
+    font-weight: 450;
+    width: 140px;
+    background-color: #f1f1f1 !important; /* Button color */
+    color: rgb(0, 0, 0);
+    border-radius: 50px;
+    cursor: pointer;
+    padding: 12px 0px;
+}
+
+.get-started-button:hover {
+    background-color: #605DEC; /* Darker shade for hover effect */
+    color: #f1f1f1 !important;
+}
+
+/* Media Queries for Responsive Design */
+
+/* For smaller screens (e.g., tablets or smaller) */
+@media (max-width: 768px) {
+    .hero {
+        max-width: 90%; /* Make the hero section width smaller on smaller screens */
+        height: 400px; /* Adjust height of hero section */
+        padding: 40px; /* Adjust padding for smaller screens */
+    }
+
+    .hero h1 {
+        font-size: 35px; /* Smaller font size for the hero title */
+        line-height: 45px;
+    }
+
+    .hero h3 {
+        font-size: 18px; /* Adjust h3 font size */
+    }
+
+    .get-started-button {
+        font-size: 16px; /* Smaller button font */
+        margin-top: 100px; /* Less space between the h1 and button */
+        width: 120px; /* Smaller button width */
+    }
+}
+
+/* For mobile devices (portrait mode) */
+@media (max-width: 480px) {
+    .hero {
+        max-width: 95%; /* Make the hero section width even smaller */
+        height: 350px; /* Adjust height further for mobile */
+        padding: 20px; /* Reduce padding */
+    }
+
+    .hero h1 {
+        font-size: 28px; /* Smaller title font */
+        line-height: 36px;
+    }
+
+    .hero h3 {
+        font-size: 16px; /* Smaller h3 font size */
+    }
+
+    .get-started-button {
+        font-size: 14px; /* Further reduce button font size */
+        width: 100px; /* Make the button smaller */
+    }
+}
+/* Prevent horizontal scrolling */
+html, body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+}

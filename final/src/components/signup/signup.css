@@ -1,0 +1,190 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+  margin: 0;
+  padding: 0;
+}
+
+.signup-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  background-color: #f7f7f7;
+}
+
+.signup-form {
+  width: 30%;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: #f7f7f7;
+  margin-left: 100px;
+  margin-top: -40px;
+}
+
+.signup-form h1 {
+  text-align: center; /* Center "Create your account" */
+  margin-bottom: 60px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-right: 50px;
+}
+
+.google-btn,
+.email-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 85%;
+  padding: 12px 20px;
+  margin-bottom: 15px;
+  border: 2px solid #202020;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #202020;
+  background-color: #f7f7f7;
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.google-btn:hover,
+.email-btn:hover {
+  opacity: 0.8;
+}
+
+.google-icon,
+.email-icon {
+  margin-right: 10px;
+}
+
+.divider {
+  text-align: center; /* Center "or" text */
+  position: relative;
+  margin: 10% 0;
+  color: #666;
+  font-size: 14px;
+  margin-right: 90px;
+}
+
+.divider span {
+  background-color: #f7f7f7;
+  padding: 0 5px;
+  position: relative;
+  z-index: 1;
+}
+
+.divider:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #ddd;
+  z-index: 0;
+}
+
+.signup-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #333;
+  font-weight: bold;
+}
+
+.signup-form input[type="text"],
+.signup-form input[type="email"],
+.signup-form input[type="password"] {
+  width: 80%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #202020;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: #f7f7f7;
+}
+
+.signup-form input:focus {
+  outline: none;
+  border-color: #6200ea;
+  box-shadow: 0 0 3px rgba(98, 0, 234, 0.5);
+}
+
+.terms {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 12px;
+  color: #666;
+  margin-right: 80px;
+}
+
+.terms input {
+  margin-right: 10px;
+}
+
+.terms a {
+  color: #6200ea;
+  text-decoration: none;
+}
+
+.signup-btn {
+  display: block;
+  width: 85%;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #605dec;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.signup-btn:hover {
+  background-color: #27ae60;
+}
+
+.login-link {
+  text-align: center; /* Center "Already have an account? Log in" */
+  margin-top: 15px;
+  font-size: 14px;
+  color: #666;
+  margin-right: 200px;
+}
+
+.login-link a {
+  color: #6200ea;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+.signup-image {
+  width: 40%;
+  text-align: center;
+}
+
+.signup-image img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 50px;
+}
+
+.signup-image p {
+  margin-top: 10px;
+  font-size: 20px;
+  color: #333;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
