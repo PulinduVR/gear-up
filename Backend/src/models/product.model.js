@@ -8,11 +8,6 @@ const productSchema = new Schema(
       ref: "User",
       required: true,
     },
-    // productID: {
-    //   type: String,
-    //   required: true,
-    //   unique: true,
-    // },
     name: {
       type: String,
       required: true,

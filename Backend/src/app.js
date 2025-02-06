@@ -2,10 +2,10 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
-import testRouter from "./routes/testRoute.js";
 import userRouter from "./routes/user.route.js";
 import productRouter from "./routes/product.route.js";
 import reviewRouter from "./routes/review.route.js";
+import reservationRouter from "./routes/reservation.route.js";
 
 dotenv.config();
 
@@ -18,9 +18,9 @@ app.get("/", (req, res) => {
   res.send("Hello");
 });
 
-app.use("/test", testRouter);
 app.use("/user", userRouter);
 app.use("/products", productRouter);
 app.use("/reviews", reviewRouter);
+app.use("/reservations", reservationRouter);
 
 export default app;
