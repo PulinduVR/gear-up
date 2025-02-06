@@ -1,72 +1,226 @@
-import React, { useState,useRef } from 'react';
-import { useParams } from 'react-router-dom';
-import './description.css';
-import pianoimge from '../../assets/proimage/piono.jpg';  // Import the image
-import amped from '../../assets/proimage/amped.jpg';
-import saxo from '../../assets/proimage/saxo.jpg';
-import light from '../../assets/proimage/light.jpg';
-import { useNavigate } from 'react-router-dom';
-import ImageShare from '../../assets/proimage/new-share.png' // Import heart icon image
+import React, { useState, useRef, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import "./description.css";
+import pianoimge from "../../assets/proimage/piono.jpg"; // Import the image
+import amped from "../../assets/proimage/amped.jpg";
+import saxo from "../../assets/proimage/saxo.jpg";
+import light from "../../assets/proimage/light.jpg";
+import { useNavigate } from "react-router-dom";
+import ImageShare from "../../assets/proimage/new-share.png"; // Import heart icon image
 import { Link } from "react-router-dom";
 import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css"; 
+import "react-calendar/dist/Calendar.css";
 
 const Description = () => {
-    // Extract title and category from route params
-    const { title: pageTitle, category } = useParams(); // Rename `title` from params to `pageTitle`
-    const navigate = useNavigate();
-  
-    // State variables
-    const [rating, setRating] = useState(0);
-    const [hoverRating, setHoverRating] = useState(0);
-    const [reviewTitle, setReviewTitle] = useState(""); // Renamed to avoid conflict
-    const [comment, setComment] = useState("");
-    const [showReviewCard, setShowReviewCard] = useState(false);
-    const [isCalendarVisible, setIsCalendarVisible] = useState(false);
-    const [selectedDate, setSelectedDate] = useState(new Date());
-    const calendarRef = useRef(null);
-    const buttonRef = useRef(null);
-  
-    const ratings = [1, 2, 3, 4, 5];
-  
-    // Handlers
-    const handleWriteReviewClick = () => setShowReviewCard(true);
-    const handleStarClick = (value) => setRating(value);
-    const handleStarHover = (value) => setHoverRating(value);
-    const handleStarLeave = () => setHoverRating(0);
-  
-    const handleDoneClick = () => {
-      if (!reviewTitle || !comment || rating === 0) {
-        alert("Please fill out all fields and select a rating.");
-        return;
+  const { title: title, category } = useParams();
+  const navigate = useNavigate();
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  const [reviews, setReviews] = useState([]);
+  const [reviewsLoading, setReviewsLoading] = useState(false);
+  const [reviewsError, setReviewsError] = useState("");
+
+  const fetchProductReviews = async (productId) => {
+    setReviewsLoading(true);
+    setReviewsError("");
+
+    try {
+      const response = await fetch(
+        `http://localhost:5000/reviews/${productId}`
+      );
+
+      // if (!response.ok) {
+      //   throw new Error(`HTTP error! status: ${response.status}`);
+      // }
+
+      const data = await response.json();
+      setReviews(data);
+    } catch (error) {
+      console.error("Error fetching reviews:", error);
+      setReviewsError("Failed to load reviews");
+    } finally {
+      setReviewsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (product) {
+      console.log(product._id);
+      fetchProductReviews(product._id);
+    }
+  }, [product]);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/products/${encodeURIComponent(title)}`
+        );
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || "Failed to fetch product details");
+        }
+
+        setProduct(data[0]);
+        console.log(data[0]);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
       }
-      alert("Thank you for your review!");
-      setRating(0);
-      setHoverRating(0);
-      setReviewTitle("");
-      setComment("");
-      setShowReviewCard(false);
     };
-    const toggleCalendar = () => {
-      setIsCalendarVisible(!isCalendarVisible);
+
+    fetchProduct();
+  }, [title]);
+
+  // State variables
+  // const [rating, setRating] = useState(0);
+  // const [hoverRating, setHoverRating] = useState(0);
+  // const [reviewTitle, setReviewTitle] = useState(""); // Renamed to avoid conflict
+  // const [comment, setComment] = useState("");
+  const [showReviewCard, setShowReviewCard] = useState(false);
+  const [isCalendarVisible, setIsCalendarVisible] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const calendarRef = useRef(null);
+  const buttonRef = useRef(null);
+
+  const ratings = [1, 2, 3, 4, 5];
+
+  // Handlers
+  // const handleWriteReviewClick = () => setShowReviewCard(true);
+  // const handleStarClick = (value) => setRating(value);
+  // const handleStarHover = (value) => setHoverRating(value);
+  // const handleStarLeave = () => setHoverRating(0);
+
+  const ReviewForm = ({ productId }) => {
+    const [formData, setFormData] = useState({
+      title: "",
+      comment: "",
+      starCount: "0",
+      product: productId,
+      user: "65f2e37d9fa36c72c71d5d23",
+    });
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+
+      try {
+        const response = await fetch("http://localhost:5000/reviews", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const newReview = await response.json();
+        console.log("Review added successfully:", newReview);
+        setFormData({
+          ...formData,
+          title: "",
+          comment: "",
+          starCount: "0",
+        });
+      } catch (error) {
+        console.error("Error submitting review:", error);
+      }
     };
-  
-    const handleDateChange = (date) => {
-      setSelectedDate(date);
-      console.log('Selected Date:', date);
+
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
     };
-  
-    const handleLoadMoreClick = () => navigate("/review");
-    const handleReserve = () => navigate("/checkout");
-    const handlechat = () => navigate("/chat");
+
+    return (
+      <form onSubmit={handleSubmit} className="review-form">
+        <div className="form-group">
+          <label htmlFor="title">Title</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="comment">Comment</label>
+          <textarea
+            id="comment"
+            name="comment"
+            value={formData.comment}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="starCount">Rating</label>
+          <select
+            id="starCount"
+            name="starCount"
+            value={formData.starCount}
+            onChange={handleChange}
+            required
+          >
+            <option value="0">Select rating</option>
+            <option value="1">1 Star</option>
+            <option value="2">2 Stars</option>
+            <option value="3">3 Stars</option>
+            <option value="4">4 Stars</option>
+            <option value="5">5 Stars</option>
+          </select>
+        </div>
+
+        <button type="submit">Submit Review</button>
+      </form>
+    );
+  };
+
+  const toggleCalendar = () => {
+    setIsCalendarVisible(!isCalendarVisible);
+  };
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+    console.log("Selected Date:", date);
+  };
+
+  const handleLoadMoreClick = () => navigate("/review");
+  const handleReserve = () => navigate("/checkout");
+  const handlechat = () => navigate("/chat");
 
   // State for heart icon toggle
   const [liked, setLiked] = useState(false);
-  
+
   // Toggle like status
   const toggleLike = () => {
     setLiked(!liked);
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (!product) {
+    return <div>Product not found</div>;
+  }
 
   return (
     <div className="description-page">
@@ -75,8 +229,8 @@ const Description = () => {
         {/* Image Section */}
         <div className="image-section">
           <img
-            src={pianoimge} // Use the imported image
-            alt={pageTitle}
+            src={product.img} // Use the imported image
+            alt={title}
             className="main-image"
           />
           {/* Thumbnail Gallery */}
@@ -89,127 +243,106 @@ const Description = () => {
 
         {/* Details Section */}
         {/* Details Section */}
-<div className="details-section">
-  {/* New section for category and breadcrumbs */}
-  <div className="breadcrumbs">
-    <p>Musical instruments / Keyboard & piano</p>
-  </div>
+        <div className="details-section">
+          {/* New section for category and breadcrumbs */}
+          <div className="breadcrumbs">
+            <p>{product.category}</p>
+          </div>
 
-  {/* Section for title, icons, and category */}
-  <div className="section1Dis">
-    <p>{category}</p>
-    <div className="iconss">
-      <img src={ImageShare} alt="Share" className="shareicon" />
-      {/* Heart icon that changes color on click */}
-      <svg
-        onClick={toggleLike}
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="black"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="hearticon"
-      >
-        <path
-          d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-          fill={liked ? 'red' : 'none'}
-        />
-      </svg>
-    </div>
-  </div>
+          {/* Section for title, icons, and category */}
+          <div className="section1Dis">
+            <p className="cat-text">{product.category}</p>
+            <div className="iconss">
+              <img src={ImageShare} alt="Share" className="shareicon" />
+              {/* Heart icon that changes color on click */}
+              <svg
+                onClick={toggleLike}
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="black"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="hearticon"
+              >
+                <path
+                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                  fill={liked ? "red" : "none"}
+                />
+              </svg>
+            </div>
+          </div>
 
-  {/* Title */}
-  <h2>{pageTitle}</h2>
-  <p>
-    📍 Galle{" "}
-    <a href="#" className="location">
-      show on map
-    </a>
-  </p>
+          {/* Title */}
+          <h2>{product.name}</h2>
+          <p>
+            📍 {product.district}{" "}
+            <a href="#" className="location">
+              show on map
+            </a>
+          </p>
 
-  <div className="pricing">
-    <div>
-      <p>Daily</p>
-      <p>Rs. 2,000</p>
-    </div>
-    <div>
-      <p>Weekly</p>
-      <p>Rs. 12,000</p>
-    </div>
-    <div>
-      <p>Monthly</p>
-      <p>Rs. 32,000</p>
-    </div>
-  </div>
+          <div className="pricing">
+            <div>
+              <p>Daily</p>
+              <p>{product.price}</p>
+            </div>
+            {/* <div>
+              <p>Weekly</p>
+              <p>Rs. 12,000</p>
+            </div>
+            <div>
+              <p>Monthly</p>
+              <p>Rs. 32,000</p>
+            </div> */}
+          </div>
 
-  <hr />
+          <hr />
 
-  {/* Pickup and Handover dates with availability button */}
-  <div className="availability">
-  <p>📅 Pickup: 2024/09/10 | Handover: 2023/09/14</p>
-  <div style={{ position: "relative" }}>
-    <button 
-      className="check-availability" 
-      onClick={toggleCalendar} 
-      ref={buttonRef}
-    >
-      Check availability
-    </button>
+          {/* Pickup and Handover dates with availability button */}
+          <div className="availability">
+            <p>📅 Pickup: 2024/09/10 | Handover: 2023/09/14</p>
+            <div style={{ position: "relative" }}>
+              <button
+                className="check-availability"
+                onClick={toggleCalendar}
+                ref={buttonRef}
+              >
+                Check availability
+              </button>
 
-    {isCalendarVisible && (
-      <div className={`calendar-popup-new ${isCalendarVisible ? "" : "hidden"}`}>
-        <Calendar onChange={handleDateChange} value={selectedDate} />
-      </div>
-    )}
-  </div>
-</div>
- 
-  <p className="estimated-cost">Estimated costs: Rs. 8,000</p>
-  <hr />
+              {isCalendarVisible && (
+                <div
+                  className={`calendar-popup-new ${
+                    isCalendarVisible ? "" : "hidden"
+                  }`}
+                >
+                  <Calendar onChange={handleDateChange} value={selectedDate} />
+                </div>
+              )}
+            </div>
+          </div>
 
-  {/* Buttons */}
-  <div className="buttons">
-    <button onClick={handlechat}  className="chat">Chat</button>
-    <button className="reserve" onClick={handleReserve}>
-      Reserve
-    </button>
-  </div>
-</div>
+          <p className="estimated-cost">Estimated costs: Rs. 8,000</p>
+          <hr />
 
+          {/* Buttons */}
+          <div className="buttons">
+            <button onClick={handlechat} className="chat">
+              Chat
+            </button>
+            <button className="reserve" onClick={handleReserve}>
+              Reserve
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Description Section */}
       <div className="description-section">
         <h3>Description</h3>
-        <p>
-          Bring the timeless beauty of the Steinway & Sons Model D Concert Grand
-          Piano to your event or studio. This stunning 9-foot piano is known for
-          its powerful, rich sound that fills any space, making it the preferred
-          choice for professional musicians and venues worldwide.
-        </p>
-        <p>
-          Whether you're hosting a concert, recording in a studio, or need a
-          centerpiece for a special event, the Model D delivers a playing
-          experience like no other. Its smooth action and deep, resonant tones
-          create an unmatched musical experience, loved by pianists of all
-          levels. Features:
-        </p>
-        <ul>
-          <li>Size: 9 feet (2.74 meters)</li>
-          <li>
-            Renowned for its deep bass, clear treble, and balanced mid-range
-          </li>
-          <li>
-            Perfect for concert halls, recording studios, and high-end events
-          </li>
-          <li>Used by the world's leading pianists and orchestras</li>
-        </ul>
-        <p>
-          Prices are negotiable, and if you have any questions or need more
-          details, our chat is always open. We're here to help!
-        </p>
+        <p>{product.description}</p>
       </div>
 
       {/* Reviews Section */}
@@ -258,93 +391,84 @@ const Description = () => {
             </div>
 
             {/* Show the "Write a review" button */}
-            
-  <button className="write-review" onClick={handleWriteReviewClick}>
-    Write a review
-  </button>
-</div>
+
+            <button
+              className="write-review"
+              onClick={() => setShowReviewCard(true)}
+            >
+              Write a review
+            </button>
+          </div>
 
           {/* Review Card */}
           {showReviewCard && (
-  <div className="review-card">
-    <h3 className="review-title">Write a Review</h3>
-    <div className="star-rating" onMouseLeave={handleStarLeave}>
-      {ratings.map((star) => (
-        <span
-          key={star}
-          className={`star ${hoverRating >= star || rating >= star ? "filled" : ""}`}
-          onClick={() => handleStarClick(star)}
-          onMouseEnter={() => handleStarHover(star)}
-        >
-          ★
-        </span>
-      ))}
-    </div>
-    <div className="review-field">
-      <label htmlFor="review-title">Title</label>
-      <input
-        id="review-title"
-        type="text"
-        value={reviewTitle} 
-        onChange={(e) => setReviewTitle(e.target.value)} 
-        placeholder="Enter the review title"
-        className="input-field"
-        
-      />
-    </div>
-    <div className="review-field">
-      <label htmlFor="review-comment">Comment</label>
-      <textarea
-        id="review-comment"
-        value={comment}
-        onChange={(e) => setComment(e.target.value)}
-        placeholder="Write your comment here"
-        className="textarea-field"
-      ></textarea>
-    </div>
-    <button className="done-button" onClick={handleDoneClick}>
-      Done
-    </button>
-  </div>
-)}
+            <div className="review-card">
+              <h3 className="review-title">Write a Review</h3>
+              <div className="star-rating" onMouseLeave={handleStarLeave}>
+                {ratings.map((star) => (
+                  <span
+                    key={star}
+                    className={`star ${
+                      hoverRating >= star || rating >= star ? "filled" : ""
+                    }`}
+                    onClick={() => handleStarClick(star)}
+                    onMouseEnter={() => handleStarHover(star)}
+                  >
+                    ★
+                  </span>
+                ))}
+              </div>
+              <div className="review-field">
+                <label htmlFor="review-title">Title</label>
+                <input
+                  id="review-title"
+                  type="text"
+                  value={reviewTitle}
+                  //onChange={(e) => setReviewTitle(e.target.value)}
+                  onChange={handleChange}
+                  placeholder="Enter the review title"
+                  className="input-field"
+                />
+              </div>
+              <div className="review-field">
+                <label htmlFor="review-comment">Comment</label>
+                <textarea
+                  id="review-comment"
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                  placeholder="Write your comment here"
+                  className="textarea-field"
+                ></textarea>
+              </div>
+              <button className="done-button" onClick={handleDoneClick}>
+                Done
+              </button>
+            </div>
+          )}
 
           {/* Individual Reviews */}
-          <div className="individual-reviews">
-            <div className="review">
-              <h3>Positive Experience</h3>
-              <p>
-                <strong>Sarah Francis</strong> - Singer
-              </p>
-              <p>⭐⭐⭐⭐⭐</p>
-              <p>
-                I had a fantastic experience renting through this buyer. The
-                process was smooth, and the item I rented was exactly as
-                described. The seller was easy to communicate with, and the
-                reserve fee gave me peace of mind. Highly recommend this
-                service!
-              </p>
-              <p className="review-date">2024/09/12</p>
-            </div>
-            <div className="review">
-              <h3>Satisfied, will rent again</h3>
-              <p>
-                <strong>James Turner</strong> - Musician
-              </p>
-              <p>⭐⭐⭐⭐⭐</p>
-              <p>
-                The experience was very straightforward. The product was
-                top-notch, and the whole process was easy and enjoyable. I'll
-                definitely rent again for my next event. Thanks for a great
-                service!
-              </p>
-              <p className="review-date">2024/09/10</p>
-            </div>
-            <Link to="/review">
-              <button className="loadMore">Load More</button>
-            </Link>
-           {/* Calendar Popup */}
-      
-
+          <div className="reviews-section">
+            <h2>Reviews</h2>
+            {reviewsLoading ? (
+              <div>Loading reviews...</div>
+            ) : reviewsError ? (
+              <div className="error">{reviewsError}</div>
+            ) : reviews.length > 0 ? (
+              <div className="reviews-list">
+                {reviews.map((review) => (
+                  <div key={review._id} className="review-item">
+                    <h3>{review.title}</h3>
+                    <p>Rating: {"⭐".repeat(review.starCount)}</p>
+                    <p>{review.comment}</p>
+                    <p className="review-date">
+                      {new Date(review.createdAt).toLocaleDateString()}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p>No reviews yet. Be the first to write one!</p>
+            )}
           </div>
         </div>
       </div>

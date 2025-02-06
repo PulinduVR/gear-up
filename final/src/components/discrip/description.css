@@ -30,7 +30,6 @@
 
   .description-page {
     padding: 10px; /* Reduce padding for smaller screens */
-    
   }
 }
 
@@ -94,13 +93,9 @@
   margin-top: 10px;
 }
 
-
-
-
 .breadcrumbs {
   font-size: 14px;
   color: gray;
-
 }
 
 .availability {
@@ -156,13 +151,11 @@
   background-color: #fff;
   border-radius: 10px;
   padding: 10px 20px;
-  
 }
 
 .description-page .description-section h3 {
   font-size: 20px;
   font-weight: bold;
-   
 }
 
 .description-page .description-section p {
@@ -357,8 +350,6 @@ label {
   background-color: #3700b3;
 }
 
-
-
 .review-card-overlay {
   position: fixed;
   top: 0;
@@ -370,8 +361,8 @@ label {
 }
 
 /* tag for final h2 */
-.featured-tag{
-  margin-top:50px ;
+.featured-tag {
+  margin-top: 50px;
   margin-bottom: 40px;
 }
 
@@ -390,7 +381,7 @@ label {
   cursor: pointer; /* Changes cursor to pointer when hovering over icons */
 }
 
-.shareicon{
+.shareicon {
   width: 25px !important; /* Force the width */
   height: 25px !important; /* Force the height */
   cursor: pointer; /* Change cursor to pointer for better UX */
@@ -402,7 +393,7 @@ label {
   transform: scale(1.2); /* Enlarges the heart icon when liked */
   color: red; /* Changes color to red when liked */
 }
-.iconss{
+.iconss {
   display: flex;
   gap: 20px; /* Add spacing between the icons */
 }
@@ -423,4 +414,8 @@ label {
 
 .check-availability {
   position: relative; /* This ensures the calendar aligns with the button */
+}
+
+.cat-text {
+  color: #f0f0f0 !important;
 }
