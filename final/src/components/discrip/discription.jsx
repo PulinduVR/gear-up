@@ -10,6 +10,8 @@ import ImageShare from "../../assets/proimage/new-share.png"; // Import heart ic
 import { Link } from "react-router-dom";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const Description = () => {
   const { title: title, category } = useParams();
@@ -21,6 +23,43 @@ const Description = () => {
   const [reviews, setReviews] = useState([]);
   const [reviewsLoading, setReviewsLoading] = useState(false);
   const [reviewsError, setReviewsError] = useState("");
+
+  const [pickupDate, setPickupDate] = useState(new Date());
+  const [handoverDate, setHandoverDate] = useState(new Date());
+  const [isAvailable, setIsAvailable] = useState(false);
+  const [checkedAvailability, setCheckedAvailability] = useState(false);
+  const [estimatedCost, setEstimatedCost] = useState("");
+
+  const handleCheckAvailability = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/reservations/check", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          productId: product._id,
+          startDate: pickupDate,
+          endDate: handoverDate,
+        }),
+      });
+
+      const data = await response.json();
+      console.log("Availability response:", data);
+      setEstimatedCost(data.estimatedCost);
+
+      setCheckedAvailability(true);
+
+      if (data.available) {
+        setIsAvailable(true);
+      } else {
+        setIsAvailable(false);
+        alert(
+          "Product is not available for the selected date range. Please try a different range."
+        );
+      }
+    } catch (error) {
+      console.error("Error checking availability:", error);
+    }
+  };
 
   const fetchProductReviews = async (productId) => {
     setReviewsLoading(true);
@@ -199,7 +238,37 @@ const Description = () => {
   };
 
   const handleLoadMoreClick = () => navigate("/review");
-  const handleReserve = () => navigate("/checkout");
+  const handleReserve = async () => {
+    try {
+      const user = JSON.parse(localStorage.getItem("userInfo"));
+      const response = await fetch("http://localhost:5000/reservations", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: user.id,
+          productId: product._id,
+          startDate: pickupDate,
+          endDate: handoverDate,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Reservation failed. Please try again.");
+      }
+
+      const responseData = await response.json();
+      console.log("Reservation created:", responseData);
+
+      // Navigate to checkout with reservation details
+      navigate("/checkout", { state: { reservation: responseData } });
+    } catch (error) {
+      console.error("Error reserving product:", error);
+      alert("An error occurred while reserving.");
+    }
+  };
+
   const handlechat = () => navigate("/chat");
 
   // State for heart icon toggle
@@ -302,29 +371,20 @@ const Description = () => {
 
           {/* Pickup and Handover dates with availability button */}
           <div className="availability">
-            <p>📅 Pickup: 2024/09/10 | Handover: 2023/09/14</p>
-            <div style={{ position: "relative" }}>
-              <button
-                className="check-availability"
-                onClick={toggleCalendar}
-                ref={buttonRef}
-              >
-                Check availability
-              </button>
-
-              {isCalendarVisible && (
-                <div
-                  className={`calendar-popup-new ${
-                    isCalendarVisible ? "" : "hidden"
-                  }`}
-                >
-                  <Calendar onChange={handleDateChange} value={selectedDate} />
-                </div>
-              )}
-            </div>
+            <label>Pickup Date:</label>
+            <DatePicker selected={pickupDate} onChange={setPickupDate} />
+            <label>Handover Date:</label>
+            <DatePicker selected={handoverDate} onChange={setHandoverDate} />
+            <button
+              className="check-availability"
+              onClick={handleCheckAvailability}
+              disabled={!pickupDate || !handoverDate}
+            >
+              Check availability
+            </button>
           </div>
 
-          <p className="estimated-cost">Estimated costs: Rs. 8,000</p>
+          <p className="estimated-cost">Estimated costs: {estimatedCost}</p>
           <hr />
 
           {/* Buttons */}
@@ -332,9 +392,11 @@ const Description = () => {
             <button onClick={handlechat} className="chat">
               Chat
             </button>
-            <button className="reserve" onClick={handleReserve}>
-              Reserve
-            </button>
+            {checkedAvailability && isAvailable && (
+              <button className="reserve" onClick={handleReserve}>
+                Reserve
+              </button>
+            )}
           </div>
         </div>
       </div>
