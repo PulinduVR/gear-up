@@ -337,6 +337,7 @@ const Cardh = () => {
               image={card.img}
               title={card.name}
               category={card.category}
+              subCategory={card.subCategory}
               location={card.district}
               dailyPrice={card.price}
             />
@@ -354,7 +355,14 @@ const Cardh = () => {
 };
 
 // Card Component to handle individual heart state
-const Card = ({ image, title, category, location, dailyPrice }) => {
+const Card = ({
+  image,
+  title,
+  category,
+  subCategory,
+  location,
+  dailyPrice,
+}) => {
   const [liked, setLiked] = useState(false);
 
   const toggleLike = () => {
@@ -381,7 +389,7 @@ const Card = ({ image, title, category, location, dailyPrice }) => {
       <div className="cont2">
         {/* Section 1: Category and Icons */}
         <div className="section1">
-          <p>{category}</p>
+          <p>{`${category} > ${subCategory}`}</p>
           <div className="heart-share-icons">
             <img src={shareicon} alt="Share" className="shareicon" />
             <svg

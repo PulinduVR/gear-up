@@ -4,6 +4,93 @@ import { useLogin } from "../../context/LoginContext";
 import "../add-item/add.css";
 import Upload from "../Upload";
 
+const categoryOptions = {
+  "Musical Instruments": [
+    "Guitars",
+    "Keyboards & Piano",
+    "Drums & Percussion",
+    "String Instruments",
+    "Brass Instruments",
+    "Windwood Instruments",
+    "DJ Equipment",
+  ],
+  "Audio & Recording": [
+    "Microphones",
+    "Headphones",
+    "Auio Interfaces",
+    "Mixing Consoles",
+    "Portable Recorder",
+    "Monitor Speakers",
+    "DJ Boxes",
+  ],
+  "PA & Live Sound": [
+    "Mixers",
+    "PA system",
+    "Powered Speakers",
+    "Subwoofers",
+    "Amplifiers",
+    "In-Ear Monitor",
+  ],
+  "Lighting & Stage": [
+    "Stage Lights",
+    "Fog Machines",
+    "Lasers & Special Effects",
+    "Lighting Controller",
+    "Trussing & Rigging Eq",
+    "Stage Platforms",
+  ],
+  "Studio Equipments": [
+    "Studio Monitors",
+    "Audio Monitor",
+    "Studio Furniture",
+    "Preamps & Channel Strips",
+    "Acoustic Treatment Panel",
+    "MIDL Controller",
+  ],
+  "Guitar & Base Access": [
+    "Guitar Pedals",
+    "Amplifiers",
+    "PedalBoards",
+    "Guitar/Bass Stand",
+    "Cables",
+  ],
+  "Percussion Accessories": [
+    "Drumsticks & Mallets",
+    "Drum Thrones",
+    "Practice Pads",
+    "Drum Head",
+    "Drum Pedals",
+  ],
+  "DJ & Performance": [
+    "DJ COntrollers",
+    "SLipmats",
+    "Vinyl Records",
+    "DJ Headphones",
+    "Lighting Effects",
+  ],
+  "Cables & Connectors": [
+    "XLR Cables",
+    "Instrument Cables",
+    "Patch Cables",
+    "Speaker Cables",
+    "Power Cables & Extension",
+    "Cable Management Access",
+  ],
+  "Sheet Music & Stands": ["Music Stands", "Sheet Music", "Stand Light"],
+  "Cases & Transport": [
+    "Instrument Cases",
+    "Hard Cases & Flight Cases",
+    "Gig Bags",
+    "Trolleys & Carts",
+  ],
+  "Batteries & Others": [
+    "Batteries & Adapters",
+    "Tuning Devices",
+    "Cleaning & Maintenance Kits",
+    "Music Software",
+  ],
+};
+
 function AddItem() {
   const { isLoggedIn } = useLogin();
   const navigate = useNavigate();
@@ -18,6 +105,7 @@ function AddItem() {
     city: "",
     postalCode: "",
     category: "",
+    subCategory: "",
     description: "",
     img: image.url || "",
   });
@@ -178,14 +266,29 @@ function AddItem() {
               value={formData.category}
               onChange={handleChange}
             >
-              <option>Category</option>
-              <option>Keyboard</option>
+              <option value="">Select Category</option>
+              {Object.keys(categoryOptions).map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
             </select>
 
-            {/* <label>Sub category <span>*</span></label>
-            <select>
-              <option>Sub category</option>
-            </select> */}
+            <label>Sub category</label>
+            <select
+              name="subCategory"
+              value={formData.subCategory}
+              onChange={handleChange}
+              disabled={!formData.category} // Disable if no category is selected
+            >
+              <option value="">Select Subcategory</option>
+              {formData.category &&
+                categoryOptions[formData.category].map((subCategory) => (
+                  <option key={subCategory} value={subCategory}>
+                    {subCategory}
+                  </option>
+                ))}
+            </select>
           </div>
 
           <div className="form-group">

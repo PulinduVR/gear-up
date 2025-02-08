@@ -16,6 +16,9 @@ const productSchema = new Schema(
       type: String,
       required: true,
     },
+    subCategory: {
+      type: String,
+    },
     price: {
       type: String,
       required: true,
