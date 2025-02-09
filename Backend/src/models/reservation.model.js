@@ -10,6 +10,7 @@ const reservationSchema = new Schema(
     },
     product: {
       type: Schema.Types.ObjectId,
+      ref: "Product",
       required: true,
     },
     startDate: {

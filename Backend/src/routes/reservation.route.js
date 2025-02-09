@@ -4,6 +4,8 @@ import {
   confirmReservation,
   createReservation,
   getBookingsForUserItems,
+  getReservationsHistory,
+  getReservationsUpcoming,
   getUserPendingReservations,
 } from "../controllers/reservation.controller.js";
 
@@ -14,5 +16,7 @@ router.post("/check", checkAvailability);
 router.put("/confirm/:userId", confirmReservation);
 router.get("/pending", getUserPendingReservations);
 router.get("/:userId", getBookingsForUserItems);
+router.get("/upcoming/:userId", getReservationsUpcoming);
+router.get("/history/:userId", getReservationsHistory);
 
 export default router;

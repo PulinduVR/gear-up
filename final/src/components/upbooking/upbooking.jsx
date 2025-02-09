@@ -54,9 +54,9 @@ const BookingPage = () => {
                 <strong>Return Date:</strong>{" "}
                 {new Date(booking.endDate).toDateString()}
               </p>
-              <p>
+              {/* <p>
                 <strong>Rental Duration:</strong> {booking.numberOfDays} days
-              </p>
+              </p> */}
               <p>
                 <strong>Rental Fee:</strong> Rs. {booking.totalRentPrice}
               </p>

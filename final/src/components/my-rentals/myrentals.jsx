@@ -1,128 +1,164 @@
-import React, { useState } from "react";
-import './myrentals.css';
-import Image1 from '../../assets/proimage/drmus.jpg';
-import Image2 from '../../assets/proimage/piono.jpg';
-import Image3 from '../../assets/proimage/saxo.jpg';
-import Image4 from '../../assets/proimage/pad.jpg';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./myrentals.css";
 
 const MyRentals = () => {
-    const [upcomingSortOrder, setUpcomingSortOrder] = useState("Top Reviews");
-    const [historySortOrder, setHistorySortOrder] = useState("Top Reviews");
+  const [upcomingRentals, setUpcomingRentals] = useState([]);
+  const [historyRentals, setHistoryRentals] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const user = JSON.parse(localStorage.getItem("userInfo"));
 
-    return (
-        <div className="rentals-container">
-            {/* Upcoming Rentals Section */}
-            <div className="rentals-section">
-                <div className="section-header">
-                    <h2 className="rental-head">My upcoming rentals</h2>
-                    <span>
-                        <select
-                            value={upcomingSortOrder}
-                            onChange={(e) => setUpcomingSortOrder(e.target.value)}
-                            className="filter-dropdown-rental"
-                        >
-                            <option value="Sort">Sort</option>
-                            <option value="Top Reviews">Top Reviews</option>
-                            <option value="Most Recent">Most Recent</option>
-                            <option value="Oldest">Oldest</option>
-                        </select>
-                    </span>
-                </div>
-                <div className="rental-item">
-                    <img
-                        src={Image1}
-                        alt="Meinl Percussion Professional Series Handcrafted Bongo Drums"
-                        className="rental-image"
-                    />
-                    <div className="rental-details">
-                        <h3>Meinl Percussion Professional Series Handcrafted Bongo Drums</h3>
-                        <div className="sub-rental-detail">
-                            <p><strong>Client name:</strong> Franklin Tavarez</p>
-                            <p><strong>Pickup date:</strong> 2024 Oct 7</p>
-                            <p><strong>Return date:</strong> 2024 Oct 14</p>
-                            <p><strong>Rental dates:</strong> 1 week</p>
-                            <div className="rental-fee-container">
-                                <h4><strong>Rental fee:</strong> Rs. 18,000</h4>
-                                <span><button className="cancel-button">Cancel</button></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  const [upcomingSortOrder, setUpcomingSortOrder] = useState("Top Reviews");
+  const [historySortOrder, setHistorySortOrder] = useState("Top Reviews");
+
+  useEffect(() => {
+    const fetchRentals = async () => {
+      try {
+        const [upcomingRes, historyRes] = await Promise.all([
+          axios.get(`http://localhost:5000/reservations/upcoming/${user.id}`),
+          axios.get(`http://localhost:5000/reservations/history/${user.id}`),
+        ]);
+        setUpcomingRentals(upcomingRes.data);
+        setHistoryRentals(historyRes.data);
+      } catch (error) {
+        console.error("Error fetching rentals:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRentals();
+  }, [user.id]);
+
+  return (
+    <div className="rentals-container">
+      {loading ? (
+        <p>Loading rentals...</p>
+      ) : (
+        <>
+          {/* Upcoming Rentals */}
+          <div className="rentals-section">
+            <div className="section-header">
+              <h2 className="rental-head">My upcoming rentals</h2>
+              <select
+                value={upcomingSortOrder}
+                onChange={(e) => setUpcomingSortOrder(e.target.value)}
+                className="filter-dropdown-rental"
+              >
+                <option value="Sort">Sort</option>
+                <option value="Top Reviews">Top Reviews</option>
+                <option value="Most Recent">Most Recent</option>
+                <option value="Oldest">Oldest</option>
+              </select>
             </div>
-
-            {/* Purchased History Section */}
-            <div className="rentals-section">
-                <div className="section-header">
-                    <h2 className="rental-head">My purchased history</h2>
-                    <span>
-                        <select
-                            value={historySortOrder}
-                            onChange={(e) => setHistorySortOrder(e.target.value)}
-                            className="filter-dropdown-rental"
-                        >
-                            <option value="Sort">Sort</option>
-                            <option value="Top Reviews">Top Reviews</option>
-                            <option value="Most Recent">Most Recent</option>
-                            <option value="Oldest">Oldest</option>
-                        </select>
-                    </span>
-                </div>
-                <div className="rental-item">
-                    <img
-                        src={Image2}
-                        alt="Steinway & Sons Model D Concert Grand Piano"
-                        className="rental-image"
-                    />
-                    <div className="rental-details">
-                        <h3>Steinway & Sons Model D Concert Grand Piano</h3>
-                        <div className="sub-rental-detail">
-                            <p><strong>Client name:</strong> Franklin Tavarez</p>
-                            <p><strong>Pickup date:</strong> 2024 Oct 7</p>
-                            <p><strong>Return date:</strong> 2024 Oct 14</p>
-                            <p><strong>Rental dates:</strong> 1 week</p>
-                            <h4><strong>Rental fee:</strong> Rs. 18,000</h4>
-                        </div>
+            {upcomingRentals.length > 0 ? (
+              upcomingRentals.map((rental) => (
+                <div className="rental-item" key={rental._id}>
+                  <img
+                    src={rental.product.img}
+                    alt={rental.product.name}
+                    className="rental-image"
+                  />
+                  <div className="rental-details">
+                    <h3>{rental.product.name}</h3>
+                    <div className="sub-rental-detail">
+                      <p>
+                        <strong>Client name:</strong> {rental.user.username}
+                      </p>
+                      <p>
+                        <strong>Pickup date:</strong>{" "}
+                        {new Date(rental.startDate).toDateString()}
+                      </p>
+                      <p>
+                        <strong>Return date:</strong>{" "}
+                        {new Date(rental.endDate).toDateString()}
+                      </p>
+                      <p>
+                        <strong>Rental duration:</strong>{" "}
+                        {Math.ceil(
+                          (new Date(rental.endDate) -
+                            new Date(rental.startDate)) /
+                            (1000 * 60 * 60 * 24)
+                        )}{" "}
+                        days
+                      </p>
+                      <div className="rental-fee-container">
+                        <h4>
+                          <strong>Rental fee:</strong> Rs.{" "}
+                          {rental.totalRentPrice}
+                        </h4>
+                        <button className="cancel-button">Cancel</button>
+                      </div>
                     </div>
+                  </div>
                 </div>
+              ))
+            ) : (
+              <p>No upcoming rentals found.</p>
+            )}
+          </div>
 
-                <div className="rental-item">
-                    <img
-                        src={Image3}
-                        alt="Yamaha YAS-480 Intermediate Eb Alto Saxophone"
-                        className="rental-image"
-                    />
-                    <div className="rental-details">
-                        <h3>Yamaha YAS-480 Intermediate Eb Alto Saxophone</h3>
-                        <div className="sub-rental-detail">
-                            <p><strong>Client name:</strong> Franklin Tavarez</p>
-                            <p><strong>Pickup date:</strong> 2024 Oct 7</p>
-                            <p><strong>Return date:</strong> 2024 Oct 14</p>
-                            <p><strong>Rental dates:</strong> 1 week</p>
-                            <h4><strong>Rental fee:</strong> Rs. 24,000</h4>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="rental-item">
-                    <img
-                        src={Image4}
-                        alt="KRK Rokit G4 Powered Professional Bi-Amped Studio Monitor"
-                        className="rental-image"
-                    />
-                    <div className="rental-details">
-                        <h3>KRK Rokit G4 Powered Professional Bi-Amped Studio Monitor</h3>
-                        <div className="sub-rental-detail">
-                            <p><strong>Client name:</strong> Franklin Tavarez</p>
-                            <p><strong>Pickup date:</strong> 2024 Oct 7</p>
-                            <p><strong>Return date:</strong> 2024 Oct 14</p>
-                            <p><strong>Rental dates:</strong> 1 week</p>
-                            <h4><strong>Rental fee:</strong> Rs. 12,000</h4>
-                        </div>
-                    </div>
-                </div>
+          {/* Purchased History */}
+          <div className="rentals-section">
+            <div className="section-header">
+              <h2 className="rental-head">My purchased history</h2>
+              <select
+                value={historySortOrder}
+                onChange={(e) => setHistorySortOrder(e.target.value)}
+                className="filter-dropdown-rental"
+              >
+                <option value="Sort">Sort</option>
+                <option value="Top Reviews">Top Reviews</option>
+                <option value="Most Recent">Most Recent</option>
+                <option value="Oldest">Oldest</option>
+              </select>
             </div>
-        </div>
-    );
+            {historyRentals.length > 0 ? (
+              historyRentals.map((rental) => (
+                <div className="rental-item" key={rental._id}>
+                  <img
+                    src={rental.product.image}
+                    alt={rental.product.name}
+                    className="rental-image"
+                  />
+                  <div className="rental-details">
+                    <h3>{rental.product.name}</h3>
+                    <div className="sub-rental-detail">
+                      <p>
+                        <strong>Client name:</strong> {rental.user.username}
+                      </p>
+                      <p>
+                        <strong>Pickup date:</strong>{" "}
+                        {new Date(rental.startDate).toDateString()}
+                      </p>
+                      <p>
+                        <strong>Return date:</strong>{" "}
+                        {new Date(rental.endDate).toDateString()}
+                      </p>
+                      <p>
+                        <strong>Rental duration:</strong>{" "}
+                        {Math.ceil(
+                          (new Date(rental.endDate) -
+                            new Date(rental.startDate)) /
+                            (1000 * 60 * 60 * 24)
+                        )}{" "}
+                        days
+                      </p>
+                      <h4>
+                        <strong>Rental fee:</strong> Rs. {rental.totalRentPrice}
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p>No rental history found.</p>
+            )}
+          </div>
+        </>
+      )}
+    </div>
+  );
 };
 
 export default MyRentals;

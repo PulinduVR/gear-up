@@ -242,6 +242,42 @@ export const getBookingsForUserItems = async (req, res) => {
   }
 };
 
+export const getReservationsUpcoming = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const today = new Date();
+
+    const upcomingRentals = await reservationModel
+      .find({
+        user: userId,
+        endDate: { $gte: today },
+      })
+      .populate("product", "name img");
+
+    res.json(upcomingRentals);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching upcoming rentals", error });
+  }
+};
+
+export const getReservationsHistory = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const today = new Date();
+
+    const historyRentals = await reservationModel
+      .find({
+        user: userId,
+        endDate: { $lt: today },
+      })
+      .populate("product");
+
+    res.json(historyRentals);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching rental history", error });
+  }
+};
+
 cron.schedule("*/1 * * * *", async () => {
   const tenMinutesAgo = new Date(Date.now() - 10 * 60 * 1000);
 
