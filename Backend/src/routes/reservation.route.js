@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  cancelReservation,
   checkAvailability,
   confirmReservation,
   createReservation,
@@ -18,5 +19,6 @@ router.get("/pending", getUserPendingReservations);
 router.get("/:userId", getBookingsForUserItems);
 router.get("/upcoming/:userId", getReservationsUpcoming);
 router.get("/history/:userId", getReservationsHistory);
+router.put("/cancel/:reservationId", cancelReservation);
 
 export default router;

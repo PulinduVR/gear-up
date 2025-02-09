@@ -30,6 +30,35 @@ const MyRentals = () => {
     fetchRentals();
   }, [user.id]);
 
+  const handleCancel = async (reservationId) => {
+    if (!window.confirm("Are you sure you want to cancel this reservation?"))
+      return;
+
+    try {
+      const response = await fetch(
+        `http://localhost:5000/reservations/cancel/${reservationId}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert("Reservation canceled successfully!");
+        setUpcomingRentals((prev) =>
+          prev.filter((rental) => rental._id !== reservationId)
+        ); // Remove canceled rental from the list
+      } else {
+        alert(result.message);
+      }
+    } catch (error) {
+      console.error("Error canceling reservation:", error);
+      alert("Failed to cancel reservation. Please try again.");
+    }
+  };
+
   return (
     <div className="rentals-container">
       {loading ? (
@@ -87,7 +116,12 @@ const MyRentals = () => {
                           <strong>Rental fee:</strong> Rs.{" "}
                           {rental.totalRentPrice}
                         </h4>
-                        <button className="cancel-button">Cancel</button>
+                        <button
+                          className="cancel-button"
+                          onClick={() => handleCancel(rental._id)}
+                        >
+                          Cancel
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -117,7 +151,7 @@ const MyRentals = () => {
               historyRentals.map((rental) => (
                 <div className="rental-item" key={rental._id}>
                   <img
-                    src={rental.product.image}
+                    src={rental.product.img}
                     alt={rental.product.name}
                     className="rental-image"
                   />

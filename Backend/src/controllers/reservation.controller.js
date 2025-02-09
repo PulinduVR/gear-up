@@ -278,6 +278,30 @@ export const getReservationsHistory = async (req, res) => {
   }
 };
 
+export const cancelReservation = async (req, res) => {
+  try {
+    const { reservationId } = req.params;
+
+    const updatedReservation = await reservationModel.findByIdAndUpdate(
+      reservationId,
+      { status: "Canceled" },
+      { new: true }
+    );
+
+    if (!updatedReservation) {
+      return res.status(404).json({ message: "Reservation not found" });
+    }
+
+    res.status(200).json({
+      message: "Reservation canceled successfully",
+      reservation: updatedReservation,
+    });
+  } catch (error) {
+    console.error("Error canceling reservation:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
 cron.schedule("*/1 * * * *", async () => {
   const tenMinutesAgo = new Date(Date.now() - 10 * 60 * 1000);
 
