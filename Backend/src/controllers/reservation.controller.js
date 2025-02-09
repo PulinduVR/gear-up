@@ -72,13 +72,13 @@ export const createReservation = async (req, res) => {
       return res.status(404).json({ message: "Product not found" });
     }
 
-    // // Fetch user details to get the email
-    // const user = await userModel.findById(userId);
-    // if (!user) {
-    //   return res.status(404).json({ message: "User not found" });
-    // }
+    // Fetch user details to get the email
+    const user = await userModel.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
 
-    // const userEmail = user.email;
+    const userEmail = user.email;
 
     const numberOfDays = Math.ceil(
       (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24)
@@ -97,20 +97,20 @@ export const createReservation = async (req, res) => {
     await reservation.save();
 
     // Send email notification for reservation creation
-    // const mailOptions = {
-    //   from: "fernandonirmal607@gmail.com",
-    //   to: userEmail,
-    //   subject: "Reservation Created",
-    //   text: `Your reservation for ${product.name} from ${startDate} to ${endDate} has been created successfully.`,
-    // };
+    const mailOptions = {
+      from: "fernandonirmal607@gmail.com",
+      to: userEmail,
+      subject: "Reservation Created",
+      text: `Your reservation for ${product.name} from ${startDate} to ${endDate} has been created successfully.`,
+    };
 
-    // transporter.sendMail(mailOptions, (error, info) => {
-    //   if (error) {
-    //     console.error("Error sending email:", error);
-    //   } else {
-    //     console.log("Email sent:", info.response);
-    //   }
-    // });
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error("Error sending email:", error);
+      } else {
+        console.log("Email sent:", info.response);
+      }
+    });
 
     res.status(201).json({
       message: "Reservation created successfully",
