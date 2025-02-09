@@ -9,6 +9,18 @@ const BookingPage = () => {
   const [bookings, setBookings] = useState([]);
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("userInfo"));
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/products/${user.id}`)
+      .then((response) => {
+        setProducts(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching products:", error);
+      });
+  }, [user.id]);
 
   useEffect(() => {
     const fetchBookings = async () => {
@@ -74,9 +86,22 @@ const BookingPage = () => {
 
       <h2 className="section-title-book">Your Items</h2>
       <div className="items-header">
+        <span className="item-count">3 items listed</span>
         <button onClick={handlePath} className="add-item-button">
           Add New Item
         </button>
+        <div className="item-list">
+          {products.map((product) => (
+            <div key={product._id} className="item-card">
+              <img
+                src={product.img}
+                alt={product.name}
+                className="item-image"
+              />
+              <p className="item-name">{product.name}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
