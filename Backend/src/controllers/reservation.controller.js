@@ -1,7 +1,9 @@
 import reservationModel from "../models/reservation.model.js";
 import productModel from "../models/product.model.js";
+import userModel from "../models/user.model.js";
 import cron from "node-cron";
 import mongoose from "mongoose";
+import transporter from "../config/nodemailer.js";
 
 export const checkAvailability = async (req, res) => {
   try {
@@ -70,6 +72,14 @@ export const createReservation = async (req, res) => {
       return res.status(404).json({ message: "Product not found" });
     }
 
+    // Fetch user details to get the email
+    const user = await userModel.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const userEmail = user.email;
+
     const numberOfDays = Math.ceil(
       (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24)
     );
@@ -85,6 +95,23 @@ export const createReservation = async (req, res) => {
     });
 
     await reservation.save();
+
+    // Send email notification for reservation creation
+    const mailOptions = {
+      from: "fernandonirmal607@gmail.com",
+      to: userEmail,
+      subject: "Reservation Created",
+      text: `Your reservation for ${product.name} from ${startDate} to ${endDate} has been created successfully.`,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error("Error sending email:", error);
+      } else {
+        console.log("Email sent:", info.response);
+      }
+    });
+
     res.status(201).json({
       message: "Reservation created successfully",
       reservation,
@@ -141,6 +168,14 @@ export const confirmReservation = async (req, res) => {
       status: "Pending",
     });
 
+    // Fetch user details to get the email
+    const user = await userModel.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const userEmail = user.email;
+
     if (pendingReservations.length === 0) {
       return res
         .status(404)
@@ -152,6 +187,22 @@ export const confirmReservation = async (req, res) => {
       { user: userId, status: "Pending" },
       { $set: { status: "Confirmed" } }
     );
+
+    // Send email notification for reservation confirmation
+    const mailOptions = {
+      from: "fernandonirmal607@gmail.com",
+      to: userEmail,
+      subject: "Reservation Confirmed",
+      text: "Your reservation has been confirmed successfully.",
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error("Error sending email:", error);
+      } else {
+        console.log("Email sent:", info.response);
+      }
+    });
 
     res.status(200).json({
       message: "Reservations confirmed successfully",
