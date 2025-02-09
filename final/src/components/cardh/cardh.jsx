@@ -434,8 +434,8 @@ const Card = ({
         <div className="section3">
           <div className="priceset">
             <div className="p1">
-              <p>Daily</p>
-              <h3>{dailyPrice}</h3>
+              <h3>Daily : Rs.{dailyPrice}</h3>
+              <h3></h3>
             </div>
             {/* <div className="p2">
               <p>Weekly</p>

@@ -348,8 +348,7 @@ const Description = () => {
 
           <div className="pricing">
             <div>
-              <p>Daily</p>
-              <p>{product.price}</p>
+              <p>Daily : Rs.{product.price}</p>
             </div>
           </div>
 

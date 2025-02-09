@@ -194,7 +194,7 @@ function AddItem() {
             <div className="price-options">
               <div>
                 <input type="radio" id="daily" name="price-type" />
-                <label htmlFor="daily">daily</label>
+                <label htmlFor="daily">Daily Price</label>
                 <input
                   type="text"
                   name="price"
@@ -221,15 +221,15 @@ function AddItem() {
               Location <span>*</span>
             </label>
             <div className="location-inputs">
-              <select>
+              {/* <select>
                 <option>District</option>
-              </select>
+              </select> */}
               <input
                 type="text"
                 name="district"
                 value={formData.district}
                 onChange={handleChange}
-                placeholder="district"
+                placeholder="District"
               />
               <input
                 type="text"

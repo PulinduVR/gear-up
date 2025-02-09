@@ -1,210 +1,207 @@
 /* General Styling */
 
-  
-  /* Checkout Container */
-  .checkout {
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-  }
-  
-  .checkout-container {
-    width: 100%;
-    max-width: 1200px;
-    background: #F1F1F1;
-    
-  }
-  .ckeck-heading{
-    color: #333;
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
+/* Checkout Container */
+.error {
+  color: red;
+}
+.checkout {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
 
-  .product-info h2{
-    color: #333;
-    padding-bottom: 40px;
-  }
-  .rental-fee{
-    padding-top: 30px;
-  }
-  .bill-head{
-    color: #333;
-  }
-  
-  /* Product Info Section */
-  .product-info {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 30px;
-    background: #f9f9f9;
-    max-width: 800px;
-  }
-  
-  .product-image {
-    width: 120px;
-    height: 120px;
-    border-radius: 8px;
-    object-fit: cover;
-    margin-right: 20px;
-  }
-  
-  .product-details h2 {
-    font-size: 1.5rem;
-    margin: 0 0 10px;
-  }
-  
-  .product-details p {
-    margin: 5px 0;
-    color: #555;
-  }
-  
-  .rental-fee span {
-    color: red;
-    font-weight: bold;
-  }
-  
-  /* Billing and Payment Section */
-  .billing-payment {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .billing-details,
-  .payment-details {
-    width: 48%;
-  }
-  
-  h2 {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-  }
-  
-  h2 span {
-    color: red;
-  }
-  h1 span {
-    color: red;
-  }
-  
-  .form-row {
-    margin-bottom: 15px;
-  }
-  
-  .check-form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  label span {
-    color: red;
-  }
-  
-  .form-row input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  input:focus {
-    outline: none;
-    border-color: #555;
-  }
-  
-  /* Checkbox */
-  .form-row.checkbox {
-    display: flex;
-    margin-right: 270px;
-    
-  }
-  .check-out-checkbox{
-    display: flex;
-    margin-right: 300px;
-  }
-  
-  .form-row.checkbox input {
-    width: auto;
-    margin-right: 10px;
-  
-  }
-  
-  /* Payment Details */
-  .payment-method img {
-    width: 50px;
-    margin: 0 10px;
-  }
-  
-  .expiry-details input {
-    width: 48%;
-    display: inline-block;
-    margin-right: 4%;
-  }
-  .payment-details{
-    margin-top: 90px;
-  }
-  .payment-details h2{
-    color:#333;
-  }
-  .payment-details h2 span{
-    padding-left: 350px;
-  }
-  .pay-cost{
-    border: #c7c0c0 solid 1px;
-    border-top: 1px;
-    border-left: 1px;
-    border-right: 1px;
-    margin-right: 20px;
-  }
-  /* Checkout Button */
-  .checkout-btn {
-    background: #6c63ff;
-    color: white;
-    padding: 10px;
-    width: 100%;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-  
-  .checkout-btn:hover {
-    background: #564dcc;
-  }
+.checkout-container {
+  width: 100%;
+  max-width: 1200px;
+  background: #f1f1f1;
+}
+.ckeck-heading {
+  color: #333;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
 
-  .payment-options {
-    display: flex;
-    align-items: center;
-    gap: 20px; /* Space between items */
-  }
-  
-  .payment-options label {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-  }
-  
-  .payment-options img {
-    width: 50px; /* Adjust size as needed */
-    margin-left: 8px; /* Add space between radio button and image */
-  }
+.product-info h2 {
+  color: #333;
+  padding-bottom: 40px;
+}
+.rental-fee {
+  padding-top: 30px;
+}
+.bill-head {
+  color: #333;
+}
 
-  .expiry-details{
-    display: flex;
-    align-items: center;
-    gap: 20px; /* Space between items */
-  }
-  .expiry-details input{
-    display: flex;
-    align-items: center;
-   
-  }
-  .product-info img{
-    width: 200px;
-    height: 200px;
-  }
-  
+/* Product Info Section */
+.product-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 30px;
+  background: #f9f9f9;
+  max-width: 800px;
+}
+
+.product-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.product-details h2 {
+  font-size: 1.5rem;
+  margin: 0 0 10px;
+}
+
+.product-details p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.rental-fee span {
+  color: red;
+  font-weight: bold;
+}
+
+/* Billing and Payment Section */
+.billing-payment {
+  display: flex;
+  justify-content: space-between;
+}
+
+.billing-details,
+.payment-details {
+  width: 48%;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+h2 span {
+  color: red;
+}
+h1 span {
+  color: red;
+}
+
+.form-row {
+  margin-bottom: 15px;
+}
+
+.check-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+label span {
+  color: red;
+}
+
+.form-row input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #555;
+}
+
+/* Checkbox */
+.form-row.checkbox {
+  display: flex;
+  margin-right: 270px;
+}
+.check-out-checkbox {
+  display: flex;
+  margin-right: 300px;
+}
+
+.form-row.checkbox input {
+  width: auto;
+  margin-right: 10px;
+}
+
+/* Payment Details */
+.payment-method img {
+  width: 50px;
+  margin: 0 10px;
+}
+
+.expiry-details input {
+  width: 48%;
+  display: inline-block;
+  margin-right: 4%;
+}
+.payment-details {
+  margin-top: 90px;
+}
+.payment-details h2 {
+  color: #333;
+}
+.payment-details h2 span {
+  padding-left: 350px;
+}
+.pay-cost {
+  border: #c7c0c0 solid 1px;
+  border-top: 1px;
+  border-left: 1px;
+  border-right: 1px;
+  margin-right: 20px;
+}
+/* Checkout Button */
+.checkout-btn {
+  background: #6c63ff;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.checkout-btn:hover {
+  background: #564dcc;
+}
+
+.payment-options {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Space between items */
+}
+
+.payment-options label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.payment-options img {
+  width: 50px; /* Adjust size as needed */
+  margin-left: 8px; /* Add space between radio button and image */
+}
+
+.expiry-details {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Space between items */
+}
+.expiry-details input {
+  display: flex;
+  align-items: center;
+}
+.product-info img {
+  width: 200px;
+  height: 200px;
+}
