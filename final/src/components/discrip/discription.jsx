@@ -129,11 +129,11 @@ const Description = () => {
   const ratings = [1, 2, 3, 4, 5];
 
   // Handlers
+
   // const handleWriteReviewClick = () => setShowReviewCard(true);
   // const handleStarClick = (value) => setRating(value);
   // const handleStarHover = (value) => setHoverRating(value);
   // const handleStarLeave = () => setHoverRating(0);
-
   const ReviewForm = ({ productId }) => {
     const [formData, setFormData] = useState({
       title: "",

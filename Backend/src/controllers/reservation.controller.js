@@ -214,6 +214,34 @@ export const confirmReservation = async (req, res) => {
   }
 };
 
+export const getBookingsForUserItems = async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    const userProducts = await productModel
+      .find({ user: userId })
+      .select("_id name");
+
+    if (!userProducts.length) {
+      return res
+        .status(200)
+        .json({ message: "No items listed yet", bookings: [] });
+    }
+
+    const productIds = userProducts.map((product) => product._id);
+
+    const reservations = await reservationModel
+      .find({ product: { $in: productIds }, status: { $ne: "Canceled" } })
+      .populate("user", "username email") // Get renter details
+      .populate("product", "name price"); // Get product details
+
+    res.status(200).json({ bookings: reservations });
+  } catch (error) {
+    console.error("Error fetching bookings:", error);
+    res.status(500).json({ message: "Internal Server Error", error });
+  }
+};
+
 cron.schedule("*/1 * * * *", async () => {
   const tenMinutesAgo = new Date(Date.now() - 10 * 60 * 1000);
 
